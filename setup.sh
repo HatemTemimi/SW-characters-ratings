@@ -6,6 +6,7 @@ cd $PWD/server
 docker pull postgres:16rc1-alpine3.18
 docker run -d --network host -e POSTGRES_PASSWORD=password  postgres:16rc1-alpine3.18
 echo "Postgres container ready!"
+echo DATABASE_URL="postgresql://postgres:password@localhost:5432/starwars?schema=public" >> .env
 npm install
 npx prisma migrate dev
 npx kill-port 3000 -y

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UserSession } from "../../types/user";
+import { UserSession } from "types/user";
 
 
 let user: UserSession = null

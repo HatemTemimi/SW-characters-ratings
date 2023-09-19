@@ -1,4 +1,4 @@
-import { rating } from '../types/ratings'
+import { rating } from 'types/ratings'
 import axios from './config/axios'
 
 export const rate = async (rating: rating | undefined)=>{

@@ -1,4 +1,4 @@
-import { Register, SignIn } from 'types/user'
+import { Register, SignIn } from '../types/user'
 import axios from './config/axios'
 
 export const login = async (signIn: SignIn | null)=>{

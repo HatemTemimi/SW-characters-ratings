@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { RatingsService } from './ratings.service';
 import { CreateRatingDto } from './dto/create-rating.dto';
 import { UpdateRatingDto } from './dto/update-rating.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 
+@UseGuards(AuthGuard)
 @Controller('ratings')
 export class RatingsController {
 
@@ -20,9 +22,11 @@ export class RatingsController {
 
   @Get(':id/:characterName')
   findOne(@Param('id') id: number, @Param('characterName') charactername: string) {
+    try{
 
     return this.ratingsService.findOne(+id, charactername);
 
+    }
   }
 
   @Get(':id')

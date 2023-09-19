@@ -15,34 +15,46 @@ export class RatingsController {
   create(@Body() createRatingDto: CreateRatingDto) {
     try {
       return this.ratingsService.create(createRatingDto);
-    } catch(e){
-        return e
+    } catch(err){
+        return err
     }
   }
 
   @Get(':id/:characterName')
   findOne(@Param('id') id: number, @Param('characterName') charactername: string) {
-    try{
-
-    return this.ratingsService.findOne(+id, charactername);
-
+    try {
+      return this.ratingsService.findOne(+id, charactername);
+    } catch (err) {
+      return err
     }
   }
 
   @Get(':id')
   findAllbyUserID(@Param('id') id: number) {
-    return this.ratingsService.findAllByUserID(id);
+    try {
+      return this.ratingsService.findAllByUserID(id);
+    } catch (err) {
+      return err
+    }
   }
 
 
   @Patch(':id')
   update(@Body() data: UpdateRatingDto) {
-    return this.ratingsService.update(data);
+    try {
+      return this.ratingsService.update(data);
+    } catch (err) {
+      return err
+    }
   }
 
   @Delete(':id')
   deleteByUserID(@Param('id') id: number) {
-    return this.ratingsService.deleteByUserID(id);
+    try {
+      return this.ratingsService.deleteByUserID(id);
+    } catch (err) {
+      return err
+    }
   }
 
 }

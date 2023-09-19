@@ -1,26 +1,47 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { UsersService } from '../users/users.service';
+import { JwtService } from '@nestjs/jwt';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { User } from 'src/users/entities/user.entity';
+import { jwtConstants } from './constants';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService
+  ) {}
+
+  async signIn(signInDto) {
+
+    const user = await this.usersService.findOne(signInDto.username);
+    const validatePassword = await bcrypt.compare(signInDto.password,user.password)
+
+    if(!validatePassword){
+          throw new UnauthorizedException('Invalid password')
+    }
+
+    const payload = { sub: user.id, username: user.username };
+    return {
+      id: user.id,
+      username: user.username,
+      access_token: await this.jwtService.signAsync(payload, {
+        secret: jwtConstants.secret
+      })
+    };
   }
 
-  findAll() {
-    return `This action returns all auth`;
-  }
+   async register (createDto: CreateUserDto): Promise<any>{
+    const createUser = new User();
+    createUser.name = createDto.name;
+    createUser.email = createDto.email;
+    createUser.username = createDto.username;
+    createUser.password = await bcrypt.hash(createDto.password, 10);
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+    const user = await this.usersService.create(createUser);
+    return {
+      token: this.jwtService.sign({ username: user.username }),
+    };
   }
 }

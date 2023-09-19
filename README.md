@@ -24,8 +24,15 @@ Web Gallery implementing star wars's rest api for displaying characters, rating 
 </ul>
 
 ## ⚙ Automatic Setup with Setup Script
-### Requirements: Git, Docker, NPM  🔑🔑🔑
+### Requirements: Git, Docker, Npm, Npx  🔑🔑🔑
 
+⚠️  Please make sure you have all the dependencies setup for the script to run correctly
+```bash
+    git version
+    docker -v
+    npm -v
+    npx -v
+ ```
 Clone the repository locally
 ```bash
     git clone git@github.com:HatemTemimi/starwars-ratings.git
@@ -46,6 +53,8 @@ Clone the repository locally
  ```
 
 Pull & Run Postgres Database container
+⚠️  Run the container with POSTGRES_PASSWORD=password
+
 ```bash
     docker pull postgres:16rc1-alpine3.18
     docker run -d --network host -e POSTGRES_PASSWORD=password  postgres:16rc1-alpine3.18    

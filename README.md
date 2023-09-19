@@ -53,6 +53,8 @@ Clone the repository locally
  ```
 
 Pull & Run Postgres Database container
+
+
 ⚠️  Run the container with POSTGRES_PASSWORD=password
 
 ```bash

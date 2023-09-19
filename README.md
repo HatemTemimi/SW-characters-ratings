@@ -28,7 +28,7 @@ Web Gallery implementing star wars's rest api for displaying characters, rating 
 
 Clone the repository locally
 ```bash
-    git clone git@gitlab.com:hatem.altemimi/marvel-app.git
+    git clone git@github.com:HatemTemimi/starwars-ratings.git
  ```
 
 Setup the project with setup script
@@ -42,7 +42,7 @@ Setup the project with setup script
 
 Clone the repository locally
 ```bash
-    git clone git@gitlab.com:hatem.altemimi/marvel-app.git
+    git clone git@github.com:HatemTemimi/starwars-ratings.git
  ```
 
 Pull & Run Postgres Database container

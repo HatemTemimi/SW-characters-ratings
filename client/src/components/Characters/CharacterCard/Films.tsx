@@ -1,5 +1,4 @@
 import { LinearProgress, Stack, Typography } from "@mui/material";
-import { getFilms } from "api/characters";
 import useGetFilms from "hooks/useGetFilms";
 import { filmProps } from "types/props";
 

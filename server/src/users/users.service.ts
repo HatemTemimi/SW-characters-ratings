@@ -8,24 +8,24 @@ export class UsersService {
 
   constructor(private prisma: PrismaService){}
 
-   async create(data:CreateUserDto): Promise<Users>{
-          const existing = await this.prisma.users.findUnique({
-               where: {
-                 username: data.username,
-               },
-          });
-         
-          if (existing) {
-            throw new ConflictException('username already exists');
-          }
+  async create(data:CreateUserDto): Promise<Users>{
+    const existing = await this.prisma.users.findUnique({
+          where: {
+            username: data.username,
+          },
+    });
+    
+    if (existing) {
+      throw new ConflictException('username already exists');
+    }
 
-          return this.prisma.users.create({
-            data,
-          });
-  }
+    return this.prisma.users.create({
+      data,
+    });
+}
 
-  findOne(username: string) {
-    return this.prisma.users.findUnique(
+findOne(username: string) {
+  return this.prisma.users.findUnique(
       {
         where: 
         {

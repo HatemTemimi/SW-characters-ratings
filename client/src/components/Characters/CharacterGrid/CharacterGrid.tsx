@@ -4,7 +4,7 @@ import Pagination from '@mui/material/Pagination';
 import Divider from '@mui/material/Divider';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect, useState } from 'react';
-import { Autocomplete, Stack, TextField, Typography } from '@mui/material';
+import { Autocomplete, Stack, TextField } from '@mui/material';
 import CharacterCard from 'components/Characters/CharacterCard/CharacterCard';
 import { Character } from 'types/characters';
 import films from 'types/films';
